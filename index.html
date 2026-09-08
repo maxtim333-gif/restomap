@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RestoMap — видеоотзывы о ресторанах</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --panel2: #1e222b; --line: #2a2f3a;
+    --text: #e8eaf0; --muted: #9aa3b2; --accent: #ff5a3c; --accent2: #ffb03c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+
+  header {
+    height: 56px; display: flex; align-items: center; gap: 14px; padding: 0 20px;
+    background: var(--panel); border-bottom: 1px solid var(--line); z-index: 25; position: relative;
+  }
+  header .logo { font-size: 20px; font-weight: 800; letter-spacing: .5px; white-space: nowrap; }
+  header .logo span { color: var(--accent); }
+  header .tag { color: var(--muted); font-size: 13px; white-space: nowrap; }
+
+  /* Поиск */
+  .searchbox { position: relative; flex: 1; max-width: 520px; }
+  .searchbox input {
+    width: 100%; background: var(--panel2); border: 1px solid var(--line); color: var(--text);
+    padding: 9px 14px 9px 36px; border-radius: 20px; font-size: 14px; outline: none;
+  }
+  .searchbox input:focus { border-color: var(--accent); }
+  .searchbox::before {
+    content: '🔍'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    font-size: 13px; opacity: .6;
+  }
+  .search-results {
+    position: absolute; top: 46px; left: 0; right: 0; background: var(--panel2);
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: none;
+    box-shadow: 0 12px 32px rgba(0,0,0,.5); max-height: 70vh; overflow-y: auto;
+  }
+  .search-results.open { display: block; }
+  .sr-group { padding: 8px 14px 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .sr-item { padding: 9px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .sr-item:hover { background: var(--panel); }
+  .sr-item .ic { width: 22px; text-align: center; }
+  .sr-item .sub { color: var(--muted); font-size: 12px; margin-left: auto; white-space: nowrap; }
+  .sr-empty { padding: 14px; color: var(--muted); font-size: 13.5px; text-align: center; }
+
+  .layout { display: flex; height: calc(100% - 56px); }
+
+  /* Sidebar */
+  .sidebar {
+    width: 360px; min-width: 360px; background: var(--panel); border-right: 1px solid var(--line);
+    overflow-y: auto; z-index: 10;
+  }
+  .sidebar .side-head { padding: 16px 18px 8px; display: flex; align-items: center; gap: 8px; }
+  .sidebar h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .city-filter {
+    background: var(--panel2); border: 1px solid var(--accent); color: var(--accent);
+    font-size: 12px; padding: 3px 10px; border-radius: 12px; cursor: pointer;
+  }
+  .filters { padding: 4px 18px 10px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid var(--line); }
+  .filters select {
+    background: var(--panel2); border: 1px solid var(--line); color: var(--text);
+    font-size: 12.5px; padding: 6px 8px; border-radius: 8px; cursor: pointer; outline: none;
+  }
+  .filters select.active { border-color: var(--accent); color: var(--accent); }
+  .rest-card {
+    padding: 14px 18px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .15s;
+  }
+  .rest-card:hover { background: var(--panel2); }
+  .rest-card.active { background: var(--panel2); border-left: 3px solid var(--accent); }
+  .rest-card .name { font-weight: 700; font-size: 15px; }
+  .rest-card .meta { color: var(--muted); font-size: 12.5px; margin-top: 4px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .rest-card .badge { color: var(--accent2); font-weight: 600; }
+
+  /* Map */
+  #map { flex: 1; z-index: 1; }
+  .leaflet-popup-content-wrapper { background: var(--panel2); color: var(--text); border-radius: 10px; }
+  .leaflet-popup-tip { background: var(--panel2); }
+  .marker-pin {
+    width: 34px; height: 34px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+    background: var(--accent); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.5);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .marker-pin span { transform: rotate(45deg); font-size: 15px; }
+
+  /* Чипы блюд — явно кликабельные */
+  .dish-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,90,60,.12); border: 1px solid var(--accent); color: var(--accent);
+    font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 16px; cursor: pointer;
+    transition: background .15s, color .15s; font-family: inherit;
+  }
+  .chip:hover { background: var(--accent); color: #fff; }
+  .chip .pl { font-weight: 800; font-size: 13px; }
+
+  /* Restaurant panel */
+  .panel {
+    position: absolute; top: 56px; right: 0; bottom: 0; width: 460px; max-width: 92vw;
+    background: var(--panel); border-left: 1px solid var(--line); z-index: 15;
+    transform: translateX(105%); transition: transform .25s ease; overflow-y: auto;
+  }
+  .panel.open { transform: translateX(0); }
+  .panel-head { padding: 20px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--panel); z-index: 2; }
+  .panel-head .close { position: absolute; top: 16px; right: 16px; background: var(--panel2); border: 1px solid var(--line); color: var(--text); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 15px; }
+  .panel-head h2 { font-size: 20px; padding-right: 40px; }
+  .panel-head .meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .panel-head .score { display: inline-block; margin-top: 10px; background: var(--accent); color: #fff; font-weight: 700; padding: 4px 12px; border-radius: 14px; font-size: 13px; }
+
+  .reviews-title { padding: 16px 20px 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .review-card { margin: 10px 16px; background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 14px; cursor: pointer; transition: border-color .15s, transform .15s; }
+  .review-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .review-card .top { display: flex; align-items: center; gap: 10px; }
+  .review-card img.ava { width: 42px; height: 42px; border-radius: 50%; }
+  .ava-fb { width: 42px; height: 42px; border-radius: 50%; background: #2c3242; color: #cdd3e0;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+  .modal .blogger .ava-fb { width: 56px; height: 56px; font-size: 22px; }
+  .review-card .who .bn { font-weight: 700; font-size: 14.5px; }
+  .review-card .who .dt { color: var(--muted); font-size: 12px; }
+  .review-card .thumb { margin-top: 10px; border-radius: 10px; width: 100%; display: block; }
+  .review-card .snippet { margin-top: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+  .badge-dlv {
+    display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 10px;
+    background: rgba(255,179,0,.14); color: #ffb74d; border: 1px solid rgba(255,179,0,.35);
+    font-size: 11px; font-weight: 600; vertical-align: 1px; white-space: nowrap;
+  }
+
+  /* Review modal */
+  .modal-bg {
+    position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 30;
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    width: 720px; max-width: 96vw; max-height: 92vh; overflow-y: auto; padding: 22px;
+  }
+  .modal .blogger { display: flex; align-items: center; gap: 14px; }
+  .modal .blogger img { width: 56px; height: 56px; border-radius: 50%; }
+  .modal .blogger .name { font-size: 17px; font-weight: 800; }
+  .modal .blogger .subs { color: var(--muted); font-size: 13px; }
+  .modal .blogger a.chan {
+    margin-left: auto; color: #fff; background: #c00; text-decoration: none;
+    padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .modal .video-wrap { margin-top: 16px; position: relative; padding-top: 56.25%; border-radius: 12px; overflow: hidden; background: #000; }
+  .modal .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .modal .full-review { margin-top: 16px; font-size: 14.5px; line-height: 1.6; color: var(--text); }
+  .modal h3 { margin-top: 22px; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .dish {
+    margin-top: 10px; background: var(--panel2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 14px; cursor: pointer; transition: border-color .15s;
+  }
+  .dish:hover { border-color: var(--accent2); }
+  .dish .dtop { display: flex; align-items: center; gap: 10px; }
+  .dish .dname { font-weight: 700; font-size: 14.5px; }
+  .dish .dscore { margin-left: auto; color: var(--accent2); font-weight: 700; font-size: 14px; }
+  .dish .dtop-star { margin-left: auto; color: var(--accent2); font-size: 18px; }
+  .dish .dnote { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
+  .dish .tc {
+    margin-top: 8px; display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff; border: 0;
+    padding: 6px 14px; border-radius: 16px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  }
+  .dish .tc:hover { filter: brightness(1.15); }
+  .modal .mclose { float: right; background: var(--panel2); border: 1px solid var(--line); color: var(--text); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 16px; }
+
+  @media (max-width: 860px) {
+    .sidebar { display: none; }
+    .panel { width: 100vw; max-width: 100vw; }
+    header .tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Resto<span>Map</span></div>
+  <div class="searchbox">
+    <input id="searchInput" type="text" placeholder="Город, ресторан, блогер или блюдо…" autocomplete="off" />
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  <div class="tag">рестораны глазами блогеров · MVP</div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-head">
+      <h2>Рестораны</h2>
+      <button class="city-filter" id="cityFilter" style="display:none"></button>
+    </div>
+    <div class="filters" id="filters">
+      <select id="fCuisine"><option value="">🍽️ Кухня: все</option></select>
+      <select id="fBlogger"><option value="">🎬 Блогер: все</option></select>
+      <select id="fVerdict">
+        <option value="">👍 Вердикт: любой</option>
+        <option value="positive">Рекомендуют</option>
+        <option value="mixed">Смешанные</option>
+        <option value="negative">Не рекомендуют</option>
+      </select>
+    </div>
+    <div id="restList"></div>
+  </aside>
+  <div id="map"></div>
+</div>
+
+<div class="panel" id="panel">
+  <div class="panel-head">
+    <button class="close" onclick="closePanel()">✕</button>
+    <h2 id="pName"></h2>
+    <div class="meta" id="pMeta"></div>
+    <span class="score" id="pScore"></span>
+  </div>
+  <div class="reviews-title" id="pRevTitle"></div>
+  <div id="pReviews"></div>
+</div>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="mclose" onclick="closeModal()">✕</button>
+    <div class="blogger" id="mBlogger"></div>
+    <div class="video-wrap"><iframe id="mVideo" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>
+    <div class="full-review" id="mReview"></div>
+    <h3>Что заказывал · разбор блюд</h3>
+    <div id="mDishes"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data.js"></script>
+<script>
+const CITIES = {};
+DATA.forEach(r => {
+  if (!CITIES[r.city]) CITIES[r.city] = { lat: r.lat, lng: r.lng, count: 0 };
+  CITIES[r.city].count++;
+});
+
+// ===== Карта (светлая схематичная, стиль как в Яндексе) =====
+const map = L.map('map', { zoomControl: true }).setView([55.751, 37.6], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors', maxZoom: 19
+}).addTo(map);
+
+function fmtDate(d) {
+  return new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+function tcToSec(tc) {
+  if (typeof tc === 'number' && isFinite(tc)) return tc;
+  const n = String(tc == null ? '' : tc).trim().split(':').map(Number);
+  return n.some(isNaN) || !n.length ? 0 : n.reduce((a, b) => a * 60 + b, 0);
+}
+function fmtTc(tc) { const sec = tcToSec(tc); return `${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`; }
+function dishScore(d) { const s = parseFloat(d.score); return isNaN(s) ? null : s; }
+function isTopDish(d) { const s = dishScore(d); return s !== null && s >= 9; }
+function avgScore(r) {
+  const all = r.reviews.flatMap(v => v.dishes.map(dishScore)).filter(s => s !== null);
+  if (!all.length) return null;
+  return (all.reduce((a, b) => a + b, 0) / all.length).toFixed(1);
+}
+function sortedReviews(r) {
+  return [...r.reviews].sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+const markers = {};
+let markerLayer = L.layerGroup().addTo(map);
+function renderMarkers() {
+  markerLayer.clearLayers();
+  DATA.forEach(r => {
+    if (!passesFilters(r)) return;
+    const icon = L.divIcon({
+      className: '', iconSize: [34, 34], iconAnchor: [17, 34],
+      html: `<div class="marker-pin"><span>${r.emoji}</span></div>`
+    });
+    const m = L.marker([r.lat, r.lng], { icon }).addTo(markerLayer);
+    m.bindPopup(`<b>${r.name}</b><br>${r.cuisine} · ${r.reviews.length} видеоотзыв(а)`);
+    m.on('click', () => openRestaurant(r.id));
+    markers[r.id] = m;
+  });
+}
+
+// ===== Список ресторанов (фильтры: город, кухня, цена, вердикт) =====
+let activeCity = null;
+const filters = { cuisine: '', blogger: '', verdict: '' };
+function passesFilters(r) {
+  if (activeCity && r.city !== activeCity) return false;
+  if (filters.cuisine && r.cuisine !== filters.cuisine) return false;
+  if (filters.blogger && !r.reviews.some(v => v.blogger.name === filters.blogger)) return false;
+  if (filters.verdict && !r.reviews.some(v => v.verdict === filters.verdict)) return false;
+  return true;
+}
+// заполняем списки кухонь и блогеров из данных
+[...new Set(DATA.map(r => r.cuisine))].sort().forEach(c => {
+  const o = document.createElement('option');
+  o.value = c; o.textContent = c;
+  document.getElementById('fCuisine').appendChild(o);
+});
+[...new Set(DATA.flatMap(r => r.reviews.map(v => v.blogger.name)))].sort().forEach(b => {
+  const o = document.createElement('option');
+  o.value = b; o.textContent = b;
+  document.getElementById('fBlogger').appendChild(o);
+});
+[['fCuisine', 'cuisine'], ['fBlogger', 'blogger'], ['fVerdict', 'verdict']].forEach(([id, key]) => {
+  document.getElementById(id).onchange = (e) => {
+    filters[key] = e.target.value;
+    e.target.classList.toggle('active', !!e.target.value);
+    renderList();
+  };
+});
+const listEl = document.getElementById('restList');
+function renderList() {
+  listEl.innerHTML = '';
+  const shown = DATA.filter(passesFilters);
+  if (!shown.length) {
+    listEl.innerHTML = '<div style="padding:18px;color:var(--muted);font-size:13px">Ничего не найдено — попробуй ослабить фильтры</div>';
+  }
+  shown.forEach(r => {
+    const el = document.createElement('div');
+    el.className = 'rest-card'; el.id = 'rc' + r.id;
+    el.innerHTML = `
+      <div class="name">${r.emoji} ${r.name}</div>
+      <div class="meta">
+        <span>${r.city}</span><span>${r.cuisine}</span><span>${r.price}</span>
+        ${avgScore(r) ? `<span class="badge">★ ${avgScore(r)}</span>` : ''}
+        <span>🎬 ${r.reviews.length}</span>
+      </div>`;
+    el.onclick = () => openRestaurant(r.id);
+    listEl.appendChild(el);
+  });
+  const btn = document.getElementById('cityFilter');
+  if (activeCity) {
+    btn.style.display = '';
+    btn.textContent = `📍 ${activeCity} ✕`;
+  } else {
+    btn.style.display = 'none';
+  }
+  renderMarkers();
+}
+document.getElementById('cityFilter').onclick = () => { activeCity = null; renderList(); map.flyTo([55.751, 37.6], 5, { duration: 0.8 }); };
+
+// ===== Панель ресторана =====
+function openRestaurant(id) {
+  const r = DATA.find(x => x.id === id);
+  document.querySelectorAll('.rest-card').forEach(e => e.classList.remove('active'));
+  document.getElementById('rc' + id)?.classList.add('active');
+  document.getElementById('pName').textContent = r.name;
+  document.getElementById('pMeta').textContent = `${r.city} · ${r.cuisine} · ${r.price} · ${r.address}`;
+  const sc = avgScore(r);
+  document.getElementById('pScore').textContent = sc ? `★ ${sc} по блюдам блогеров` : `${r.reviews.length} видеоотзыв(а)`;
+  document.getElementById('pRevTitle').textContent = `Видеоотзывы · по свежести (${r.reviews.length})`;
+  const box = document.getElementById('pReviews');
+  box.innerHTML = '';
+  sortedReviews(r).forEach(v => {
+    const el = document.createElement('div');
+    el.className = 'review-card';
+    el.innerHTML = `
+      <div class="top">
+        <img class="ava" src="${v.blogger.ava}" alt="" onerror="this.onerror=null; this.outerHTML='<div class=&quot;ava-fb&quot;>${v.blogger.name[0]}</div>'">
+        <div class="who">
+          <div class="bn">${v.blogger.name}</div>
+          <div class="dt">${fmtDate(v.date)} · ${v.blogger.subs}${v.format === 'delivery' ? ' <span class="badge-dlv" title="Блогер пробовал доставку, а не зал">🛵 доставка</span>' : ''}</div>
+        </div>
+      </div>
+      <img class="thumb" src="https://img.youtube.com/vi/${v.videoId}/mqdefault.jpg" alt="">
+      <div class="snippet">${v.snippet}</div>
+      <div class="dish-chips"></div>`;
+    const chips = el.querySelector('.dish-chips');
+    v.dishes.forEach(d => {
+      const c = document.createElement('button');
+      c.className = 'chip';
+      c.innerHTML = `<span class="pl">▶</span>${d.name} · ${fmtTc(d.tc)}`;
+      c.title = 'Смотреть момент про это блюдо';
+      c.onclick = (e) => { e.stopPropagation(); openReview(r, v, d.tc); };
+      chips.appendChild(c);
+    });
+    el.onclick = () => openReview(r, v);
+    box.appendChild(el);
+  });
+  document.getElementById('panel').classList.add('open');
+  map.flyTo([r.lat, r.lng], 15, { duration: 0.8 });
+}
+function closePanel() { document.getElementById('panel').classList.remove('open'); }
+
+// ===== Модалка отзыва =====
+function openReview(r, v, jumpTc) {
+  document.getElementById('mBlogger').innerHTML = `
+    <img src="${v.blogger.ava}" alt="" onerror="this.onerror=null; this.outerHTML='<div class=&quot;ava-fb&quot;>${v.blogger.name[0]}</div>'">
+    <div>
+      <div class="name">${v.blogger.name}</div>
+      <div class="subs">${v.blogger.subs} · обзор от ${fmtDate(v.date)}${v.format === 'delivery' ? ' <span class="badge-dlv" title="Блогер пробовал доставку, а не зал">🛵 оценивалась доставка</span>' : ''}</div>
+    </div>
+    <a class="chan" href="${v.blogger.channel}" target="_blank">▶ Канал</a>`;
+  setVideo(v.videoId, jumpTc ?? v.start);
+  document.getElementById('mReview').textContent = v.full;
+  const box = document.getElementById('mDishes');
+  box.innerHTML = '';
+  v.dishes.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'dish';
+    el.innerHTML = `
+      <div class="dtop"><div class="dname">${d.name}</div>${isTopDish(d) ? '<div class="dtop-star" title="Блогер в восторге">★</div>' : ''}</div>
+      <div class="dnote">${d.note}</div>
+      <button class="tc">▶ Смотреть с ${fmtTc(d.tc)}</button>`;
+    el.querySelector('.tc').onclick = (e) => { e.stopPropagation(); setVideo(v.videoId, d.tc); };
+    el.onclick = () => setVideo(v.videoId, d.tc);
+    box.appendChild(el);
+  });
+  document.getElementById('modalBg').classList.add('open');
+}
+function setVideo(id, start) {
+  document.getElementById('mVideo').src =
+    `https://www.youtube.com/embed/${id}?start=${tcToSec(start)}&rel=0`;
+}
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('open');
+  document.getElementById('mVideo').src = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ===== Единый поиск: города, рестораны, блогеры, блюда =====
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+
+function doSearch(q) {
+  q = q.trim().toLowerCase();
+  if (q.length < 2) { searchResults.classList.remove('open'); return; }
+  const res = { cities: [], rests: [], bloggers: [], dishes: [] };
+
+  Object.entries(CITIES).forEach(([name, c]) => {
+    if (name.toLowerCase().includes(q)) res.cities.push({ name, ...c });
+  });
+  DATA.forEach(r => {
+    if (r.name.toLowerCase().includes(q)) res.rests.push(r);
+    const seen = new Set();
+    r.reviews.forEach(v => {
+      if (v.blogger.name.toLowerCase().includes(q) && !seen.has(v.blogger.name)) {
+        seen.add(v.blogger.name);
+        res.bloggers.push({ blogger: v.blogger, rest: r, review: v });
+      }
+      v.dishes.forEach(d => {
+        if (d.name.toLowerCase().includes(q)) res.dishes.push({ dish: d, rest: r, review: v });
+      });
+    });
+  });
+
+  const rows = [];
+  res.cities.slice(0, 3).forEach(c => rows.push({
+    group: 'Города', ic: '📍', label: c.name, sub: `${c.count} рест.`,
+    go: () => { activeCity = c.name; renderList(); map.flyTo([c.lat, c.lng], 12, { duration: 0.8 }); }
+  }));
+  res.rests.slice(0, 4).forEach(r => rows.push({
+    group: 'Рестораны', ic: r.emoji, label: r.name, sub: r.city,
+    go: () => openRestaurant(r.id)
+  }));
+  res.bloggers.slice(0, 3).forEach(b => rows.push({
+    group: 'Блогеры', ic: '🎬', label: b.blogger.name, sub: b.rest.name,
+    go: () => { openRestaurant(b.rest.id); openReview(b.rest, b.review); }
+  }));
+  res.dishes.slice(0, 5).forEach(d => rows.push({
+    group: 'Блюда', ic: '🍽', label: d.dish.name, sub: d.rest.name,
+    go: () => { openRestaurant(d.rest.id); openReview(d.rest, d.review, d.dish.tc); }
+  }));
+
+  searchResults.innerHTML = '';
+  if (!rows.length) {
+    searchResults.innerHTML = '<div class="sr-empty">Ничего не найдено</div>';
+  } else {
+    let lastGroup = '';
+    rows.forEach(row => {
+      if (row.group !== lastGroup) {
+        lastGroup = row.group;
+        const g = document.createElement('div');
+        g.className = 'sr-group'; g.textContent = lastGroup;
+        searchResults.appendChild(g);
+      }
+      const el = document.createElement('div');
+      el.className = 'sr-item';
+      el.innerHTML = `<span class="ic">${row.ic}</span><span>${row.label}</span><span class="sub">${row.sub}</span>`;
+      el.onclick = () => { searchResults.classList.remove('open'); searchInput.value = row.label; row.go(); };
+      searchResults.appendChild(el);
+    });
+  }
+  searchResults.classList.add('open');
+}
+searchInput.addEventListener('input', e => doSearch(e.target.value));
+document.addEventListener('click', e => {
+  if (!e.target.closest('.searchbox')) searchResults.classList.remove('open');
+});
+
+// ===== Диплинки: ?rest=1&review=11&tc=254&q=...&cuisine=...&blogger=...&verdict=... =====
+(function () {
+  const q = new URLSearchParams(location.search);
+  ['cuisine', 'blogger', 'verdict'].forEach(key => {
+    const val = q.get(key);
+    if (!val) return;
+    const sel = document.getElementById('f' + key[0].toUpperCase() + key.slice(1));
+    if (sel && [...sel.options].some(o => o.value === val)) {
+      sel.value = val;
+      filters[key] = val;
+      sel.classList.add('active');
+    }
+  });
+  renderList();
+  const sq = q.get('q');
+  if (sq) { searchInput.value = sq; doSearch(sq); }
+  const rid = parseInt(q.get('rest'), 10);
+  if (!rid) return;
+  openRestaurant(rid);
+  const vid = parseInt(q.get('review'), 10);
+  if (vid) {
+    const r = DATA.find(x => x.id === rid);
+    const v = r?.reviews.find(x => x.id === vid);
+    const tc = parseInt(q.get('tc'), 10);
+    if (v) openReview(r, v, isNaN(tc) ? undefined : tc);
+  }
+})();
+</script>
+</body>
+</html>
