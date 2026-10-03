@@ -167,16 +167,34 @@
   .dish .tc:hover { filter: brightness(1.15); }
   .modal .mclose { float: right; background: var(--panel2); border: 1px solid var(--line); color: var(--text); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 16px; }
 
+  #menuBtn {
+    display: none; align-items: center; justify-content: center;
+    background: var(--panel2); border: 1px solid var(--line); color: var(--text);
+    width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 16px; flex-shrink: 0;
+  }
+
   @media (max-width: 860px) {
-    .sidebar { display: none; }
+    .sidebar {
+      display: block; position: fixed; top: 56px; left: 0; bottom: 0;
+      width: 86vw; min-width: 0; max-width: 380px;
+      transform: translateX(-105%); transition: transform .25s ease; z-index: 20;
+      box-shadow: 8px 0 32px rgba(0,0,0,.5);
+    }
+    .sidebar.open { transform: translateX(0); }
     .panel { width: 100vw; max-width: 100vw; }
+    header { padding: 0 10px; gap: 8px; }
     header .tag { display: none; }
+    #menuBtn { display: flex; }
+    .modal-bg { padding: 8px; }
+    .modal { padding: 14px; border-radius: 14px; }
+    .modal .blogger a.chan { padding: 6px 10px; font-size: 12px; }
   }
 </style>
 </head>
 <body>
 
 <header>
+  <button id="menuBtn" aria-label="Список ресторанов">☰</button>
   <div class="logo">Resto<span>Map</span></div>
   <div class="searchbox">
     <input id="searchInput" type="text" placeholder="Город, ресторан, блогер или блюдо…" autocomplete="off" />
@@ -238,7 +256,8 @@ DATA.forEach(r => {
 });
 
 // ===== Карта (светлая схематичная, стиль как в Яндексе) =====
-const map = L.map('map', { zoomControl: true }).setView([55.751, 37.6], 12);
+const map = L.map('map', { zoomControl: true, attributionControl: false }).setView([55.751, 37.6], 12);
+L.control.attribution({ prefix: false }).addTo(map);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors', maxZoom: 19
 }).addTo(map);
@@ -339,9 +358,16 @@ function renderList() {
 }
 document.getElementById('cityFilter').onclick = () => { activeCity = null; renderList(); map.flyTo([55.751, 37.6], 5, { duration: 0.8 }); };
 
+// ===== Мобильное меню (шторка со списком) =====
+const sidebarEl = document.querySelector('.sidebar');
+document.getElementById('menuBtn').onclick = (e) => { e.stopPropagation(); sidebarEl.classList.toggle('open'); };
+map.on('click', () => sidebarEl.classList.remove('open'));
+function closeMobileMenu() { if (window.innerWidth <= 860) sidebarEl.classList.remove('open'); }
+
 // ===== Панель ресторана =====
 function openRestaurant(id) {
   const r = DATA.find(x => x.id === id);
+  closeMobileMenu();
   document.querySelectorAll('.rest-card').forEach(e => e.classList.remove('active'));
   document.getElementById('rc' + id)?.classList.add('active');
   document.getElementById('pName').textContent = r.name;
