@@ -258,8 +258,8 @@ DATA.forEach(r => {
 // ===== Карта (светлая схематичная, стиль как в Яндексе) =====
 const map = L.map('map', { zoomControl: true, attributionControl: false }).setView([55.751, 37.6], 12);
 L.control.attribution({ prefix: false }).addTo(map);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors', maxZoom: 19
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '© Esri · © OpenStreetMap contributors', maxZoom: 19
 }).addTo(map);
 
 function fmtDate(d) {
