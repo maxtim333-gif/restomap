@@ -200,7 +200,7 @@
     <input id="searchInput" type="text" placeholder="Город, ресторан, блогер или блюдо…" autocomplete="off" />
     <div class="search-results" id="searchResults"></div>
   </div>
-  <div class="tag">рестораны глазами блогеров · MVP</div>
+  <div class="tag">рестораны глазами блогеров</div>
 </header>
 
 <div class="layout">
@@ -341,7 +341,6 @@ function renderList() {
       <div class="name">${r.emoji} ${r.name}</div>
       <div class="meta">
         <span>${r.city}</span><span>${r.cuisine}</span><span>${r.price}</span>
-        ${avgScore(r) ? `<span class="badge">★ ${avgScore(r)}</span>` : ''}
         <span>🎬 ${r.reviews.length}</span>
       </div>`;
     el.onclick = () => openRestaurant(r.id);
