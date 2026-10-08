@@ -110,6 +110,14 @@
   .panel-head h2 { font-size: 20px; padding-right: 40px; }
   .panel-head .meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
   .panel-head .score { display: inline-block; margin-top: 10px; background: var(--accent); color: #fff; font-weight: 700; padding: 4px 12px; border-radius: 14px; font-size: 13px; }
+  .panel-head .actions { display: flex; gap: 10px; margin-top: 14px; }
+  .act-btn {
+    flex: 1; text-align: center; text-decoration: none; font-weight: 700; font-size: 13.5px;
+    padding: 10px 0; border-radius: 12px; cursor: pointer; transition: filter .15s;
+  }
+  .act-btn:hover { filter: brightness(1.15); }
+  .act-btn.route { background: #2c3242; color: var(--text); border: 1px solid var(--line); }
+  .act-btn.dlv { background: var(--accent); color: #fff; }
 
   .reviews-title { padding: 16px 20px 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
   .review-card { margin: 10px 16px; background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 14px; cursor: pointer; transition: border-color .15s, transform .15s; }
@@ -232,6 +240,10 @@
     <h2 id="pName"></h2>
     <div class="meta" id="pMeta"></div>
     <span class="score" id="pScore"></span>
+    <div class="actions">
+      <a id="btnRoute" target="_blank" rel="noopener" class="act-btn route">🧭 Маршрут</a>
+      <a id="btnDelivery" target="_blank" rel="noopener" class="act-btn dlv">🛵 Доставка</a>
+    </div>
   </div>
   <div class="reviews-title" id="pRevTitle"></div>
   <div id="pReviews"></div>
@@ -375,6 +387,10 @@ function openRestaurant(id) {
   document.getElementById('pMeta').textContent = `${r.city} · ${r.cuisine} · ${r.price} · ${r.address}`;
   const sc = avgScore(r);
   document.getElementById('pScore').textContent = sc ? `★ ${sc} по блюдам блогеров` : `${r.reviews.length} видеоотзыв(а)`;
+  document.getElementById('btnRoute').href =
+    `https://yandex.ru/maps/?pt=${r.lng},${r.lat}&z=16&l=map&text=${encodeURIComponent(r.name + ' ' + r.city)}`;
+  document.getElementById('btnDelivery').href =
+    `https://eda.yandex.ru/search?query=${encodeURIComponent(r.name + ' ' + r.city)}`;
   document.getElementById('pRevTitle').textContent = `Видеоотзывы · по свежести (${r.reviews.length})`;
   const box = document.getElementById('pReviews');
   box.innerHTML = '';
