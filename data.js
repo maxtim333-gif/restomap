@@ -791,6 +791,230 @@ const DATA = [
     ]
   },
   {
+    "id": 158,
+    "name": "Martinique Brasserie",
+    "cuisine": "Французская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.9007873,
+    "lng": 27.551309,
+    "address": "ул. Городской Вал, 10",
+    "emoji": "🥐",
+    "reviews": [
+      {
+        "id": 35796,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Французский ресторан с террасой и одним из самых популярных ночных баров Минска.",
+        "full": "Martinique — французский ресторан в традиционном стиле: летом терраса с диджеем по выходным, уютный бар, который сам по себе один из самых популярных ночных баров города. Можно начать с ужина и продолжить ночь в баре.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 58188,
+    "name": "Klaus Cafe",
+    "cuisine": "Итальянская",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9044013,
+    "lng": 27.5462267,
+    "address": "ул. Раковская, 25к2",
+    "emoji": "🍕",
+    "reviews": [
+      {
+        "id": 32430,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 205,
+        "snippet": "Итальянское кафе шефа Клаудио Роса из семьи сицилийских поваров: классика из свежих ингредиентов и креатив вроде шоколадного стейка.",
+        "full": "Klaus Cafe — итальянская атмосфера в центре Минска: пицца и паста из самых свежих ингредиентов, а в меню встречаются креативные блюда вроде шоколадного стейка. Шеф-повар Клаудио Роса родился в семье итальянского шефа на Сицилии.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Шоколадный стейк",
+            "tc": 205,
+            "score": null,
+            "note": "Креативная позиция в меню рядом с классической пиццей и пастой"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 59578,
+    "name": "Bistro o'Da!",
+    "cuisine": "Европейская · healthy",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9315665,
+    "lng": 27.6527269,
+    "address": "ул. Петра Мстиславца, 18",
+    "emoji": "🥗",
+    "reviews": [
+      {
+        "id": 37482,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 480,
+        "snippet": "Вкусная и здоровая еда на Маяке Минска, известный дегустационный сет.",
+        "full": "Bistro o'Da! позиционирует себя как вкусная и здоровая еда одновременно. Ресторан известен своим дегустационным сетом — Anfisa рекомендует попробовать. Владелица — успешная бизнес-леди с проектами в сфере здоровья.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Дегустационный сет",
+            "tc": 480,
+            "score": null,
+            "note": "Фирменный формат — попробовать всё лучшее за один вечер"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 74056,
+    "name": "Бульбашы",
+    "cuisine": "Современная белорусская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.9042672,
+    "lng": 27.5553726,
+    "address": "пл. Свободы, 4",
+    "emoji": "🥔",
+    "reviews": [
+      {
+        "id": 82041,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Один из двух лучших ресторанов современной белорусской кухни в стране по версии блогера.",
+        "full": "Если хочется современной белорусской кухни — это «Бульбашы» на площади Свободы: по версии Anfisa, один из двух лучших ресторанов белорусской кухни в стране.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 59567,
+    "name": "ButterBro",
+    "cuisine": "Гастробар · домашняя",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9265292,
+    "lng": 27.6516839,
+    "address": "ул. Жасминовая, 3Б",
+    "emoji": "🧈",
+    "reviews": [
+      {
+        "id": 92996,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Второй из двух лучших ресторанов белорусской кухни — гастробар с домашней кухней.",
+        "full": "ButterBro — второй из двух лучших ресторанов современной белорусской кухни по версии блогера. Душевный гастробар с фермерскими продуктами.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 98746,
+    "name": "UMAMI Neobistro",
+    "cuisine": "Паназиатская · необистро",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9020966,
+    "lng": 27.5504423,
+    "address": "ул. Революционная, 28",
+    "emoji": "🥢",
+    "reviews": [
+      {
+        "id": 83484,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Японское необистро, которое блогер специально побежала показать.",
+        "full": "UMAMI — азиатское необистро, которое Anfisa специально побежала показать в ролике: одно из любимых азиатских мест города. У них, как и у Ronin, есть выгодные ланч-боксы.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 9059,
+    "name": "CUPRUM Smoked BBQ",
+    "cuisine": "Техасское BBQ · смокер",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9038396,
+    "lng": 27.5542071,
+    "address": "пл. Свободы, 13",
+    "emoji": "🍖",
+    "reviews": [
+      {
+        "id": 97602,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Гастробар с техасским BBQ из настоящего смокера в здании XVIII века на площади Свободы.",
+        "full": "CUPRUM — копчёности из настоящего смокера в историческом здании 18 века с кирпичными сводами на площади Свободы. Завершает список 20 лучших ресторанов Минска по версии Anfisa Belarus.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
     "id": 81897,
     "name": "Burger Heroes",
     "cuisine": "Бургерная",
