@@ -583,6 +583,214 @@ const DATA = [
     ]
   },
   {
+    "id": 20254,
+    "name": "Fiori",
+    "cuisine": "Европейская · итальянская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.9044794,
+    "lng": 27.5555325,
+    "address": "пл. Свободы, 8",
+    "emoji": "🌸",
+    "reviews": [
+      {
+        "id": 61751,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Новый ресторан на площади Свободы от двух девушек: красивый интерьер, живая музыка — идеально для романтики.",
+        "full": "Fiori открыли в 2022-м две девушки: очень красивый ресторан в центре города с живой музыкой, свежими цветами и скатертями. Летом работает терраса с диджеем по выходным.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 61095,
+    "name": "ODI",
+    "cuisine": "Европейская · кондитерская",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.8970486,
+    "lng": 27.5525863,
+    "address": "пр. Независимости",
+    "emoji": "🍨",
+    "reviews": [
+      {
+        "id": 88260,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 167,
+        "snippet": "Ресторан-кондитерская: одно из лучших мороженых в Минске и вкусная еда рядом с проспектом Независимости.",
+        "full": "ODI — две секции: кондитерская и ресторан. Мороженое — одно из самых вкусных в Минске, еда в ресторане тоже очень хороша. После ужина удобно прогуляться по проспекту Независимости.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Мороженое",
+            "tc": 167,
+            "score": null,
+            "note": "Одно из самых вкусных мороженых в Минске"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 85326,
+    "name": "FABRIQ",
+    "cuisine": "Паназиатская · европейская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.9049919,
+    "lng": 27.5523733,
+    "address": "пр. Победителей, 1",
+    "emoji": "🍮",
+    "reviews": [
+      {
+        "id": 88048,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 383,
+        "snippet": "Огромное меню от суши до миньона — то самое место после долгого перелёта. Любимый ванильный фондан блогера.",
+        "full": "FABRIQ — место, куда идти после долгого перелёта: меню огромное, от суши до миньона, стресс минимальный. Здесь находится любимый десерт Anfisa — ванильный фондан.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Ванильный фондан",
+            "tc": 383,
+            "score": 10,
+            "note": "Любимый десерт блогера в этом ресторане"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 24861,
+    "name": "Сакагучи (Sakaguchi)",
+    "cuisine": "Японская",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9315665,
+    "lng": 27.6527269,
+    "address": "ул. Петра Мстиславца, 18",
+    "emoji": "🍜",
+    "reviews": [
+      {
+        "id": 64011,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Настоящий японский ресторан у Национальной библиотеки: шеф из Японии, его жена-белоруска свободно говорит по-японски.",
+        "full": "Сакагучи — исконно японский ресторан рядом с Национальной библиотекой и Dana Mall: шеф-повар из Японии, еда не похожа на привычные том ямы, а скорее на настоящую японскую кухню.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 88827,
+    "name": "Имена",
+    "cuisine": "Авторская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.903915,
+    "lng": 27.5555903,
+    "address": "пл. Свободы, 2",
+    "emoji": "🍷",
+    "reviews": [
+      {
+        "id": 4125,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 517,
+        "snippet": "Маленький ресторан на площади Свободы — бронировать заранее. Десерт «панна-котта из баклажанов» — must try.",
+        "full": "Имена — маленький ресторан в старинном здании в центре, столик лучше бронировать заранее. Вся еда вкусная, но обязательно закажите десерт: панна-котта из баклажанов с карамелью.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Панна-котта из баклажанов с карамелью",
+            "tc": 517,
+            "score": null,
+            "note": "Обязательный десерт: очень вкусно и небольшая порция"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 82409,
+    "name": "Flow Izakaya Bar",
+    "cuisine": "Паназиатская",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.8916568,
+    "lng": 27.5722437,
+    "address": "ул. Октябрьская, 19",
+    "emoji": "🍰",
+    "reviews": [
+      {
+        "id": 64615,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 623,
+        "snippet": "Современная азиатская кухня на Октябрьской и один из лучших десертов города — цитрусовый чизкейк.",
+        "full": "Flow — ресторан современной азиатской кухни на Октябрьской улице. Еда очень вкусная, а цитрусовый чизкейк — один из лучших десертов в Минске. После ужина приятно прогуляться по атмосферной Октябрьской.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Цитрусовый чизкейк",
+            "tc": 623,
+            "score": 10,
+            "note": "Один из лучших десертов в Минске по версии блогера"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": 81897,
     "name": "Burger Heroes",
     "cuisine": "Бургерная",
