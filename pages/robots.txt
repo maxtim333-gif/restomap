@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://maxtim333-gif.github.io/restomap/sitemap.xml
+Sitemap: https://restomapp.ru/sitemap.xml
