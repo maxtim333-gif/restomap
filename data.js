@@ -382,6 +382,207 @@ const DATA = [
     ]
   },
   {
+    "id": 60067,
+    "name": "RONIN",
+    "cuisine": "Японская · суши",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.92759,
+    "lng": 27.573736,
+    "address": "ул. Максима Богдановича, 78",
+    "emoji": "🍣",
+    "reviews": [
+      {
+        "id": 96404,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 292,
+        "snippet": "Лучшие суши в стране по версии Anfisa Belarus. Всегда бронировать заранее.",
+        "full": "Ресторан Ronin очень популярен среди местных, столик нужно бронировать заранее. В будни есть обеденный сет на доставку — около килограмма еды за 30–32 рубля: суши, суп, горячее и зелёный чай.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Обеденный сет",
+            "tc": 292,
+            "score": null,
+            "note": "~1 кг еды за 30–32 BYN в будни: суши, суп, горячее и зелёный чай"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 70365,
+    "name": "Бергамо",
+    "cuisine": "Итальянская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.92618,
+    "lng": 27.56427,
+    "address": "ул. Кульман, 37",
+    "emoji": "🇮🇹",
+    "reviews": [
+      {
+        "id": 92666,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Классический итальянский ресторан с живой музыкой, популярен для романтических ужинов и праздников.",
+        "full": "Бергамо — классический итальянский ресторан с живой музыкой. Местные выбирают его для романтического ужина, дней рождения и даже свадеб.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 4422,
+    "name": "Dialoghi (Диалоги)",
+    "cuisine": "Итальянская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.9307779,
+    "lng": 27.6502129,
+    "address": "ул. Петра Мстиславца, 10",
+    "emoji": "🍝",
+    "reviews": [
+      {
+        "id": 91619,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Новый ресторан у Национальной библиотеки с потрясающим видом. Не дешёвый, но того стоит.",
+        "full": "Ресторан Диалоги удобно совместить с визитом в Национальную библиотеку — они рядом. Вид потрясающий, но по ценам выше среднего по Минску.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
+    "id": 14523,
+    "name": "Мисс Ли",
+    "cuisine": "Китайская",
+    "price": "₽₽",
+    "city": "Минск",
+    "lat": 53.9119214,
+    "lng": 27.5603878,
+    "address": "ул. Максима Богдановича, 6",
+    "emoji": "🥡",
+    "reviews": [
+      {
+        "id": 82386,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 741,
+        "snippet": "Непринуждённый китайский ресторан со знаменитым жарким.",
+        "full": "Мисс Ли — вариант для casual-ужина: знаменитое китайское жаркое и расслабленная атмосфера.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Китайское жаркое",
+            "tc": 741,
+            "score": null,
+            "note": "Знаменитое жаркое — формат непринуждённой трапезы"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 51288,
+    "name": "Seasons (отель «Пекин»)",
+    "cuisine": "Китайская",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.8922249,
+    "lng": 27.5784217,
+    "address": "ул. Красноармейская, 36",
+    "emoji": "🦆",
+    "reviews": [
+      {
+        "id": 66245,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 694,
+        "snippet": "Пафосный китайский ресторан в отеле «Пекин», шеф из провинции Хунань. Утка по-пекински за 180 BYN того стоит.",
+        "full": "Seasons находится в китайском отеле «Пекин», шеф-повар родом из провинции Хунань. Главное блюдо — знаменитая утка по-пекински за 180 рублей: её начинают готовить задолго до вашего прихода, одной утки хватает на компанию друзей.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Утка по-пекински",
+            "tc": 694,
+            "score": null,
+            "note": "180 ₽ · Главное блюдо ресторана, готовить начинают заранее — хватает на компанию"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 86634,
+    "name": "Seafood Bar",
+    "cuisine": "Морепродукты",
+    "price": "₽₽₽",
+    "city": "Минск",
+    "lat": 53.9015104,
+    "lng": 27.5496181,
+    "address": "ул. Революционная, 17",
+    "emoji": "🦞",
+    "reviews": [
+      {
+        "id": 21472,
+        "date": "2023-12-03",
+        "blogger": {
+          "name": "Anfisa Belarus",
+          "ava": "https://yt3.googleusercontent.com/3ZbQOBZOFTlo8enCzpsiHAmRDtJfdOiou-0bYcTLruZGlVbMwYjxgyG5YKA3BqrUAIXasTGt=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "32,6 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCU2eyzeOQTKrF4315JW32Yw"
+        },
+        "videoId": "23C8Aj1HdMw",
+        "start": 0,
+        "snippet": "Лучший ресторан морепродуктов в Минске по версии Anfisa Belarus.",
+        "full": "Seafood Bar на Революционной — определённо лучший ресторан морепродуктов в Минске. В пятницу и субботу вечером бронировать обязательно.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": []
+      }
+    ]
+  },
+  {
     "id": 81897,
     "name": "Burger Heroes",
     "cuisine": "Бургерная",
@@ -2133,6 +2334,55 @@ const DATA = [
             "tc": 1560,
             "score": 4,
             "note": "250 ₽ · По сути пакетик-пирамидка за 250 ₽. Цена без вопросов, но и без повода."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 72246,
+    "name": "Магадан на Красном Октябре",
+    "cuisine": "Рыбная · морепродукты",
+    "price": "₽₽₽",
+    "city": "Москва",
+    "lat": 55.7418523,
+    "lng": 37.6094974,
+    "address": "Берсеневский пер., 3/10с8",
+    "emoji": "🦀",
+    "reviews": [
+      {
+        "id": 46342,
+        "date": "2024-07-07",
+        "blogger": {
+          "name": "Peyman Al Awadhi",
+          "ava": "https://yt3.googleusercontent.com/ytc/AIdro_nmsTSomMwtB9HEJnO7ysAYPRBgqCoi3OLcvCxRsBZXAg=s900-c-k-c0x00ffffff-no-rj",
+          "subs": "141 тыс. подписчиков",
+          "channel": "https://www.youtube.com/channel/UCu2SDLtoqPZlZYgbyMI5c2A"
+        },
+        "videoId": "Iyve7Rj7k0E",
+        "start": 1341,
+        "snippet": "Фуд-тур по Москве: завтрак с пастрами-сэндвичем, гастромаркет с пирожками и ягодами, уличная шаурма — а финал дня в «Магадане»: креветки на льду, тёплый камчатский краб в масле и холодец с васаби.",
+        "full": "Дубайский фуд-блогер Peyman Al Awadhi провёл день в Москве: начал с сэндвича с пастрами и яйцом, прошёлся по гастромаркету (пирожок с капустой, вареники с картошкой и грибами, дикая земляника), попробовал уличную шаурму «по-арабски», а завершил тур в «Магадане» у воды. Магаданские креветки на льду, тёплый камчатский краб («столько мяса, соус не нужен вообще») и традиционный холодец с васаби, который его приятно удивил. Из практики: иностранные карты в Москве не работают — нужны наличные.",
+        "verdict": "positive",
+        "format": null,
+        "dishes": [
+          {
+            "name": "Магаданские креветки на льду",
+            "tc": 1341,
+            "score": null,
+            "note": "Креветки из Магадана с майонезом, соусом чили и лаймом"
+          },
+          {
+            "name": "Камчатский краб",
+            "tc": 1395,
+            "score": 10,
+            "note": "Тёплый, в масле, очень много мяса — «соус не нужен вообще». Восторг"
+          },
+          {
+            "name": "Холодец с васаби",
+            "tc": 1450,
+            "score": null,
+            "note": "Традиционное русское блюдо, крепкий васаби и уксус — «очень необычно и вкусно»"
           }
         ]
       }
