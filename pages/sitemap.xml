@@ -137,11 +137,13 @@
 <url><loc>https://restomapp.ru/rest/77369-gastronomika-po-novomu-tani-bulanovoy/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/83773-zov-vorona-taverna-olega-shepsa-zakryt/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/32561-stars-coffee-timati/</loc><priority>0.8</priority></url>
+<url><loc>https://restomapp.ru/rest/47191-maroon-marun/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/85319-metropol-zavtrak-bezlimit/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/11791-the-byk-bezlimitnoe-menyu/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/14433-mishki-bratishki/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/83269-in-talk/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/37494-marki-druzhba/</loc><priority>0.8</priority></url>
+<url><loc>https://restomapp.ru/rest/93907-reputaciya-dj-bar/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/62656-black-chops/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/686-peremena-duo/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/rest/80564-duo-asia/</loc><priority>0.8</priority></url>
@@ -176,6 +178,8 @@
 <url><loc>https://restomapp.ru/dish/burger/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/grenki-chesnochnye/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/dolma/</loc><priority>0.8</priority></url>
+<url><loc>https://restomapp.ru/dish/kamchatskiy-krab/</loc><priority>0.8</priority></url>
+<url><loc>https://restomapp.ru/dish/kurinye-stripsy/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/lukovyy-sup/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/moti/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/romovaya-baba/</loc><priority>0.8</priority></url>
@@ -183,9 +187,11 @@
 <url><loc>https://restomapp.ru/dish/rebryshki/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/salat-s-hrustyaschimi-baklazhanami/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/smeshburger/</loc><priority>0.8</priority></url>
+<url><loc>https://restomapp.ru/dish/syrnye-palochki/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/sendvich-s-tuncom/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/firmennyy-burger/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/fish-end-chips/</loc><priority>0.8</priority></url>
+<url><loc>https://restomapp.ru/dish/cyplenok-tabaka/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/chizburger/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/shaurma-klassicheskaya/</loc><priority>0.8</priority></url>
 <url><loc>https://restomapp.ru/dish/shashlyk-iz-svinoy-sheyki/</loc><priority>0.8</priority></url>
